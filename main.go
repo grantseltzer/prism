@@ -3,9 +3,9 @@ package main
 import (
 	"os"
 
-	"github.com/grantseltzer/fs-snapshot/dirtree"
-	"github.com/grantseltzer/fs-snapshot/repopulate"
-	"github.com/grantseltzer/fs-snapshot/snapshot"
+	"github.com/grantseltzer/prism/dirtree"
+	"github.com/grantseltzer/prism/repopulate"
+	"github.com/grantseltzer/prism/snapshot"
 )
 
 func main() {

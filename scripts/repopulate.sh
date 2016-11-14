@@ -1,2 +1,2 @@
 #!/bin/bash
-/bin/fs-snapshot repopulate
+prism repopulate

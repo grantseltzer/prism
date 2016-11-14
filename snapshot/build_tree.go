@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/grantseltzer/fs-snapshot/dirtree"
+	"github.com/grantseltzer/prism/dirtree"
 )
 
 var root dirtree.Directory

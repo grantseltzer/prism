@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/grantseltzer/fs-snapshot/dirtree"
+	"github.com/grantseltzer/prism/dirtree"
 )
 
 // LoadSnapshot loads the snapshot json file into memory
