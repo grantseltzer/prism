@@ -1,9 +1,14 @@
 # Prism
 Tool for analyzing the effects an application will have on your system when run
 
-Prism is still a work in progress
+### Prism is still a work in progress
 
-The following steps are used to analyze an executable:
+- It started as a hackathon project, so there's definitely parts that need revision/optimization
+
+- Take a look at the issues if you'd like to contribute. (Thanks in advance!)
+
+
+### The following steps are used to analyze an executable:
 
 - A 'snapshot' is created of your linux filesystem. This includes path, last access timestamp, permission bits, and content (mocked).
 
