@@ -1,29 +1,27 @@
-package imagemake
+package snapshot
 
 import (
 	"os"
 	"strings"
 	"time"
-
-	"github.com/grantseltzer/prism/dirtree"
 )
 
 func basisDate() time.Time {
 	return time.Date(1995, time.May, 15, 0, 0, 0, 0, time.Local)
 }
 
-func insert(root *dirtree.Directory, FullPath string, f os.FileInfo) error {
+func insert(root *Directory, FullPath string, f os.FileInfo) error {
 
 	splitPath := strings.Split(FullPath, "/")
 
-	// If we're in the correct dirtree.Directory
+	// If we're in the correct Directory
 	if len(splitPath) == 1 || len(splitPath) == 2 {
 		if f.IsDir() {
-			var newDir = new(dirtree.Directory)
+			var newDir = new(Directory)
 			newDir.DirectoryPath = f.Name()
 			root.SubDirectories = append(root.SubDirectories, newDir)
 		} else {
-			var newEntry = new(dirtree.FileInfo)
+			var newEntry = new(FileInfo)
 			newEntry.FullPath = FullPath
 			newEntry.Content = "$"
 			newEntry.PermissionNumber = f.Mode()
@@ -31,7 +29,7 @@ func insert(root *dirtree.Directory, FullPath string, f os.FileInfo) error {
 			root.Entries = append(root.Entries, newEntry)
 		}
 	} else {
-		// Step to the correct dirtree.Directory, recursively call insert
+		// Step to the correct Directory, recursively call insert
 		for _, subDir := range root.SubDirectories {
 			if subDir.DirectoryPath == splitPath[1] {
 				err := insert(subDir, strings.Join(splitPath[1:], "/"), f)

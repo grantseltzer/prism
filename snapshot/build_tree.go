@@ -1,4 +1,4 @@
-package imagemake
+package snapshot
 
 import (
 	"encoding/json"
@@ -6,14 +6,18 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
-	"github.com/grantseltzer/prism/dirtree"
 )
 
-var root dirtree.Directory
+var root Directory
 
 // AddToTree is called on each fs object to add to the directory tree
 func AddToTree(path string, f os.FileInfo, err error) error {
+
+	directoryBlacklist := map[string]bool{
+		"/proc":                true,
+		"/var/lib/oci-storage": true,
+	}
+
 	if !strings.HasPrefix("/proc", path) && !strings.HasPrefix("/var/lib/oci-storage", path) {
 		insert(&root, path, f)
 	}

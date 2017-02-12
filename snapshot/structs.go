@@ -1,4 +1,4 @@
-package dirtree
+package snapshot
 
 import (
 	"os"

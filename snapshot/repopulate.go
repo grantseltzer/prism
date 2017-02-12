@@ -1,25 +1,23 @@
-package repopulate
+package snapshot
 
 import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
 	"strings"
-
-	"github.com/grantseltzer/prism/dirtree"
 )
 
 // LoadSnapshot loads the snapshot json file into memory
 func LoadSnapshot(fileName string) (interface{}, error) {
 	jsonString, err := ioutil.ReadFile(fileName)
 	jsonBytes := []byte(jsonString)
-	var root dirtree.Directory
+	var root Directory
 	err = json.Unmarshal(jsonBytes, root)
 	return jsonBytes, err
 }
 
 // Repopulate is calling CreateFullPath on each entry from root
-func Repopulate(root dirtree.Directory) {
+func Repopulate(root Directory) {
 	for _, x := range root.Entries {
 		CreateFullPath(*x)
 	}
@@ -29,7 +27,7 @@ func Repopulate(root dirtree.Directory) {
 }
 
 // CreateFullPath takes a path and will build the whole thing
-func CreateFullPath(fileInfo dirtree.FileInfo) {
+func CreateFullPath(fileInfo FileInfo) {
 	path := strings.Split(fileInfo.FullPath, "/")
 	currentPath := path[0]
 	for i := range path {
